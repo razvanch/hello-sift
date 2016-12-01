@@ -1863,7 +1863,7 @@ class MyController extends SiftController {
     return this.storage.get({
       bucket: '_redsift',
       keys: ['webhooks/curl_input']
-    }).then(d => d[0].value);
+    }).then(d => d[0]);
   }
 
    getWho() {

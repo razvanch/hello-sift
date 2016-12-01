@@ -1890,7 +1890,7 @@ var MyController = (function (SiftController) {
     return this.storage.get({
       bucket: '_redsift',
       keys: ['webhooks/curl_input']
-    }).then(function (d) { return d[0].value; });
+    }).then(function (d) { return d[0]; });
   };
 
    MyController.prototype.getWho = function getWho () {
