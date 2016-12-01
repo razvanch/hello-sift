@@ -24,7 +24,7 @@ export default class MyController extends SiftController {
       case 'summary':
         return {
           html: 'summary.html',
-          data: this.getWebhook().then(x => ({name: 'no-one', hook_uri: x})) //this.getX()
+          data: this.getWebhook().then(x => ({name: 'no-one', hook_uri: x.value})) //this.getX()
         };
       default:
         console.error('hello: unknown Sift type: ', state.type);

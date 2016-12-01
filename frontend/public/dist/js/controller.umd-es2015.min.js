@@ -1869,7 +1869,7 @@ var MyController = (function (SiftController) {
       case 'summary':
         return {
           html: 'summary.html',
-          data: this.getWebhook().then(function (x) { return ({name: 'no-one', hook_uri: x}); }) //this.getX()
+          data: this.getWebhook().then(function (x) { return ({name: 'no-one', hook_uri: x.value}); }) //this.getX()
         };
       default:
         console.error('hello: unknown Sift type: ', state.type);
