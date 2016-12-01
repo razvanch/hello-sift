@@ -1,0 +1,70 @@
+{
+  "name": "hello",
+  "display-name": "Hello Sift",
+  "description": "Great sift",
+  "author": "",
+  "version": "1.0.0",
+  "icon": "assets/blueprint.svg",
+  "interfaces": {
+    "email": {
+      "thread" : {
+        "controller": "dist/js/controller.umd-es2015.js"
+      },
+      "client" : {
+        "controller": "dist/js/email-client-controller.umd-es2015.js"
+      }
+    },
+    "summary": {
+      "controller": "dist/js/controller.umd-es2015.js"
+    }
+  },
+  "dag": {
+    "inputs":{
+      "emails": {},
+      "slack-bot": {},
+      "webhooks": {
+        "curl_input": {
+          "inbound": {
+            "uri": "{key}/{value}"
+          }
+        }
+      }
+    },
+    "nodes":[{
+      "#": "JS Node",
+      "input": {
+        "bucket": "curl_input"
+      },
+      "implementation": {
+        "javascript": "server/node1.js"
+      },
+      "outputs": {
+        "hello": {}
+      }
+    },
+    {
+      "#": "Python node",
+      "input": {
+        "bucket": "hello"
+      },
+      "implementation": {
+        "javascript": "server/node2.js"
+      },
+      "outputs": {
+        "who": {}
+      }
+    }],
+    "stores":{
+      "hello" : {
+        "key$schema":"string"
+      }
+    },
+    "outputs":{
+      "exports": {
+        "who": {
+          "key$schema": "string"
+        }
+      }
+    }
+  }
+}
